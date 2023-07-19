@@ -1,0 +1,37 @@
+#include "raylib.h"
+
+int main(void) {
+    const int Screen_width = 720;
+    const int Screen_height = 1280;
+
+    InitWindow(Screen_height, Screen_width, "Moving Ball - test");
+
+    Texture2D background = LoadTexture("D:/fisier joc sdl2/fundal.png");
+
+    Vector2 ballPosition = { (float)Screen_width / 2, (float)Screen_height / 2 };
+
+    SetTargetFPS(60);
+
+    while (!WindowShouldClose()) {
+        if (IsKeyDown(KEY_RIGHT)) ballPosition.x += 2.0f;
+        if (IsKeyDown(KEY_LEFT)) ballPosition.x -= 2.0f;
+        if (IsKeyDown(KEY_UP)) ballPosition.y -= 2.0f;
+        if (IsKeyDown(KEY_DOWN)) ballPosition.y += 2.0f;
+
+        BeginDrawing();
+
+        DrawTexture(background, 0, 0, WHITE);
+
+        DrawText("misca bila cu ajutorul sagetilor", 10, 10, 20, DARKGRAY);
+
+        DrawCircleV(ballPosition, 50, MAROON);
+
+        EndDrawing();
+    }
+
+    UnloadTexture(background);
+
+    CloseWindow();
+
+    return 0;
+}
